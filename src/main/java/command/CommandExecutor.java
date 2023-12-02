@@ -1,6 +1,7 @@
 package command;
 
 import controller.ParkingLotController;
+import exception.InvalidRequestDataException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class CommandExecutor {
 
         }
         if(!commandCheck){
-            throw new Exception("The requested command is not correct.");
+            throw new InvalidRequestDataException("The requested command is not correct.");
         }
     }
 }

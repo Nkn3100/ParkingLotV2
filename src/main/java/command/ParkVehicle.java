@@ -3,7 +3,6 @@ package command;
 import controller.ParkingLotController;
 import dto.ParkVehicleRequestDTO;
 import dto.ParkVehicleResponseDTO;
-import model.Ticket;
 import model.VehicleType;
 
 import java.util.List;

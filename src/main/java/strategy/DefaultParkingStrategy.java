@@ -7,7 +7,6 @@ import repository.TicketRepository;
 import java.util.List;
 
 public class DefaultParkingStrategy implements ParkingStrategy {
-    private ParkingLotRepository parkingLotRepository;
     @Override
     public Ticket park(Vehicle vehicle, ParkingLotRepository parkingLotRepository, TicketRepository ticketRepository) {
         ParkingLot parkingLot = parkingLotRepository.get("PR1234");

@@ -62,7 +62,8 @@ public class ParkingLotService {
         vehicle.setColor(color);
         vehicle.setType(vehicleType);
         vehicle.setRegNumber(regNo);
-        ParkingStrategy parkingStrategy = ParkingFactory.getParkingStrategy(parkingLotRepository);
+        // Here we can implement in future if any new way of spot allocation strategy is implementing
+        ParkingStrategy parkingStrategy = ParkingFactory.getParkingStrategy();
         return parkingStrategy.park(vehicle,parkingLotRepository,ticketRepository);
     }
     public HashMap<Integer,Integer> freeCount(VehicleType vehicleType){

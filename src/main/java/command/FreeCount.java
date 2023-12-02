@@ -3,8 +3,6 @@ package command;
 import controller.ParkingLotController;
 import dto.FreeCountResponseDTO;
 import model.VehicleType;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
