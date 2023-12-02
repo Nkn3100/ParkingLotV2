@@ -5,6 +5,8 @@ import repository.ParkingFloorRepository;
 import repository.ParkingLotRepository;
 import repository.ParkingSlotRepository;
 import repository.TicketRepository;
+import strategy.ParkingFactory;
+import strategy.ParkingStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,26 +62,8 @@ public class ParkingLotService {
         vehicle.setColor(color);
         vehicle.setType(vehicleType);
         vehicle.setRegNumber(regNo);
-        ParkingLot parkingLot = parkingLotRepository.get("PR1234");
-        List<ParkingFloor> parkingFloors = parkingLot.getParkingFloors();
-        Ticket ticket = new Ticket();
-        for(ParkingFloor pf : parkingFloors){
-            List<ParkingSlot> parkingSlots = pf.getParkingSlots();
-            for(ParkingSlot ps: parkingSlots){
-                if(ps.getStatus() == Status.FREE && ps.getSupportedVehicleType() == vehicleType){
-                    ps.setVehicle(vehicle);
-                    ps.setStatus(Status.OCCUPIED);
-                    ticket.setParkingSlot(ps);
-                    ticket.setVehicle(vehicle);
-                    ticket.setParkingFloor(pf);
-                    String ticketNo = "PR1234_" + pf.getFloorNumber() +"_" + ps.getNumber();
-                    ticket.setTicketNumber(ticketNo);
-                    ticketRepository.put(ticket);
-                    return ticket;
-                }
-            }
-        }
-        return null;
+        ParkingStrategy parkingStrategy = ParkingFactory.getParkingStrategy(parkingLotRepository);
+        return parkingStrategy.park(vehicle,parkingLotRepository,ticketRepository);
     }
     public HashMap<Integer,Integer> freeCount(VehicleType vehicleType){
         HashMap<Integer,Integer> freeCount = new HashMap<>();
