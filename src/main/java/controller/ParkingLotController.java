@@ -2,12 +2,8 @@ package controller;
 
 import dto.*;
 import model.*;
-import repository.ParkingFloorRepository;
-import repository.ParkingLotRepository;
-import repository.ParkingSlotRepository;
 import service.ParkingLotService;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
